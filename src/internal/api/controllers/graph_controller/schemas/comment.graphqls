@@ -1,0 +1,18 @@
+type Comment {
+    id: ID!
+    postID: ID!
+    parentID: ID
+    content: String!
+    authorID: ID!
+    createdAt: String!
+    updatedAt: String!
+    replies: [Comment]
+    repliesCount: Int
+}
+
+input NewComment {
+    postID: ID!
+    parentID: ID
+    content: String!
+    authorID: ID!
+}

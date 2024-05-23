@@ -1,0 +1,22 @@
+
+CREATE TABLE IF NOT EXISTS posts (
+    ID            SERIAL PRIMARY KEY,
+    title         VARCHAR(255) NOT NULL,
+    content       TEXT,
+    author_ID      VARCHAR(255) NOT NULL,
+    allow_comments BOOLEAN DEFAULT TRUE,
+    created_At     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_At     TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS comments (
+    ID        SERIAL PRIMARY KEY,
+    post_ID    INTEGER NOT NULL,
+    parent_ID  INTEGER,
+    content   TEXT,
+    author_ID  VARCHAR(255) NOT NULL,
+    created_At TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_At TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (post_ID) REFERENCES posts(ID),
+    FOREIGN KEY (parent_ID) REFERENCES comments(ID)
+);

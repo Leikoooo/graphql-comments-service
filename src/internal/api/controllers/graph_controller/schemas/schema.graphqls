@@ -1,0 +1,10 @@
+type Query {
+  getPosts: [Post!]!
+  getCommentsByPostID(postID: ID!, page: Int!, pageSize: Int!, maxDepth: Int!, maxReplies: Int!): [Comment!]!
+  getPostByID(id: String!): Post!
+}
+
+type Mutation {
+  createPost(input: NewPost!): Post!
+  createComment(input: NewComment!): Comment!
+}

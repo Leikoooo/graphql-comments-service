@@ -1,0 +1,16 @@
+type Post {
+    id: ID!
+    title: String!
+    content: String!
+    authorID: ID!
+    allowComments: Boolean!
+    createdAt: String!
+    updatedAt: String!
+}
+
+input NewPost {
+    title: String!
+    content: String!
+    authorID: ID!
+    allowComments: Boolean!
+}
