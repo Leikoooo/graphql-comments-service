@@ -1,4 +1,3 @@
-# Указываем базовый образ
 FROM golang:1.19-alpine
 
 WORKDIR /app
@@ -11,8 +10,9 @@ RUN apk add --no-cache wget && \
     mv migrate /usr/local/bin/migrate && \
     rm migrate.tar.gz
 
-COPY go.mod go.sum ./
+RUN apk add --no-cache dos2unix
 
+COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
@@ -20,6 +20,8 @@ COPY . .
 RUN go build -o app ./src/cmd
 
 COPY run.sh .
+
+RUN dos2unix run.sh
 
 RUN chmod +x run.sh
 
